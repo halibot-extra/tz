@@ -1,6 +1,6 @@
 from halibot import HalModule
 from datetime import datetime, timedelta
-from pytz import timezone, UnknownTimeZoneError
+from pytz import timezone, UnknownTimeZoneError, utc
 import json
 
 def is_valid_tz(tz):
@@ -11,9 +11,10 @@ def is_valid_tz(tz):
         return False
 
 FMT = '%Y-%m-%d %H:%M:%S %Z%z'
-
 def time_for(tz):
-    return timezone(tz).localize(datetime.utcnow()).strftime(FMT)
+    return utc.localize(datetime.utcnow())
+              .astimezone(timezone(tz))
+              .strftime(FMT)
 
 
 TZLINK = 'https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'
