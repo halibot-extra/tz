@@ -35,12 +35,12 @@ class TZ(HalModule):
         if cmd != '!tz':
             return
 
-        if words.len() == 2:
+        if len(words) == 2:
             if words[1] in self.users:
                 self.reply(msg, body=time_for(self.users[words[1]]))
             else:
                 self.reply(msg, 'I don\'t know what timezone that user is in')
-        elif words.len() > 3:
+        elif len(words) > 3:
             if words[2] == '=':
                 tz = '_'.join(words[3:]) 
                 if is_valid_tz(tz):
