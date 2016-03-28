@@ -43,14 +43,14 @@ class TZ(HalModule):
             if words[1] in self.users:
                 self.reply(msg, body=time_for(self.users[words[1]]))
             else:
-                self.reply(msg, 'I don\'t know what timezone that user is in')
+                self.reply(msg, body='Unknown user')
         elif len(words) > 3:
             if words[2] == '=':
                 tz = '_'.join(words[3:]) 
                 if is_valid_tz(tz):
                     self.users[words[1]] = tz
                     self.save()
-                    self.reply(msg, 'Associated user and timezone')
+                    self.reply(msg, body='Associated user and timezone')
                 else:
-                    self.reply(msg, 'I don\'t know that timezone. See ' +
+                    self.reply(msg, body='I don\'t know that timezone. See ' +
                             TZLINK)
