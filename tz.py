@@ -10,8 +10,11 @@ def is_valid_tz(tz):
     except UnknownTimeZoneError:
         return False
 
+FMT = '%Y-%m-%d %H:%M:%S %Z%z'
+
 def time_for(tz):
-    return str(timezone(tz).localize(datetime.utcnow()))
+    return timezone(tz).localize(datetime.utcnow()).strftime(FMT)
+
 
 TZLINK = 'https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'
 
