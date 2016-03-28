@@ -21,8 +21,12 @@ class TZ(HalModule):
         self.load()
 
     def load(self):
-        with open(self.dbpath, 'r') as f:
-            self.users = json.loads(f.read())
+        try:
+            with open(self.dbpath, 'r') as f:
+                self.users = json.loads(f.read())
+        except FileNotFoundError:
+            self.users = {}
+            self.save()
     
     def save(self):
         with open(self.dbpath, 'w') as f:
