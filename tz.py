@@ -20,6 +20,14 @@ def time_for(tz):
 TZLINK = 'https://en.wikipedia.org/wiki/List_of_tz_database_time_zones'
 
 class TZ(HalModule):
+
+    options = {
+        'tz-path': {
+            'type'   : 'string',
+            'prompt' : 'File to store timezone information in',
+        },
+    }
+
     def init(self):
         self.dbpath = self.config['tz-path']
         self.load()
